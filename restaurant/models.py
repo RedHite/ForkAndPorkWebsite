@@ -15,11 +15,15 @@ VEGEOPTION = (
     (3, 'vegan'),
 )
 
+class Allergene(models.Model):
+    name = models.CharField(max_length=128)
+
 class Meal(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField(null=True)
     price = models.DecimalField(null=True, max_digits=6, decimal_places=3)
-    Calories = models.IntegerField(max_length=5, null=True)
-    Spicy = models.IntegerField(choices=SPICYPOWER)
-    Meat = models.IntegerField(choices=VEGEOPTION)
-
+    calories = models.IntegerField(max_length=5, null=True)
+    spicy = models.IntegerField(choices=SPICYPOWER)
+    meat = models.IntegerField(choices=VEGEOPTION)
+    picture = models.ImageField()
+    allergenes = models.ManyToManyField(Allergene)
